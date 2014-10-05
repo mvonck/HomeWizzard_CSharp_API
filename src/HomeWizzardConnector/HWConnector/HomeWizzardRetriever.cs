@@ -26,6 +26,11 @@ namespace HomeWizzardConnector.HWConnector
         {
             return GetAndParseAction<BaseResponse<GetSensorsResponse>>(action: "/get-sensors");
         }
+
+        public BaseResponse<IEnumerable<Scene>> GetScenes()
+        {
+            return GetAndParseAction<BaseResponse<IEnumerable<Scene>>>(action: "/gplist");
+        }
     }
 }
 

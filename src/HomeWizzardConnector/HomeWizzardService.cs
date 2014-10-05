@@ -34,7 +34,10 @@ namespace HomeWizzardConnector
 
         public IEnumerable<Scene> GetScenes()
         {
-            throw new NotImplementedException();
+            return _homeWizzardRetriever
+                .GetScenes()
+                .Response
+                .Select(x => new Scene(x));
         }
 
         public void SwitchDevice(int switchId, SwitchEnum switchEnum)

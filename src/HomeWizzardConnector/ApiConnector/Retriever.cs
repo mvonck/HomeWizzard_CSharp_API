@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using HomeWizzardConnector.ApiConnector.Exceptions;
+using Newtonsoft.Json;
 
 namespace HomeWizzardConnector.ApiConnector
 {
@@ -29,6 +30,23 @@ namespace HomeWizzardConnector.ApiConnector
             GetConnector = getGetConnector;
         }
 
+        protected TJsonResult GetAndParseAction<TJsonResult>(string action)
+        {
+            //Try to get jsonResult
+            string response;
+            try
+            {
+                response = RetrieveResultWithRetry(action);
+            }
+            catch (ConnectorException e)
+            {
+                throw new RetrieverException(String.Format("Failed to do the following action '{0}', see inner exception for details.", action), e);
+            }
+
+            //Try to parse result to json
+            return JsonConvert.DeserializeObject<TJsonResult>(response);
+        }
+
         /// <summary>
         /// Gets a result as string from a REST API url
         /// Tries x times 
@@ -37,7 +55,7 @@ namespace HomeWizzardConnector.ApiConnector
         /// <param name="numRetries">The number to retry, if null the default will be used</param>
         /// <returns>The result of the given url as string</returns>
         /// <exception cref="ConnectorException">if getting data is failed after numRetries</exception>
-        protected string RetrieveResultWithRetry(string apiActionUrl, int numRetries = 3)
+        private string RetrieveResultWithRetry(string apiActionUrl, int numRetries = 3)
         {
             using (var connector = GetConnector())
             {

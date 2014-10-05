@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiConnector\Exceptions\RetrieverException.cs" />
     <Compile Include="ApiConnector\Exceptions\ConnectorException.cs" />
     <Compile Include="ApiConnector\IConnector.cs" />
     <Compile Include="ApiConnector\IRetriever.cs" />

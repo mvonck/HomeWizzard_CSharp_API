@@ -32,7 +32,7 @@ namespace HomeWizzardConnector
             return new SensorsCollection(jsonObject.Response);
         }
 
-        public IEnumerable<object> GetScenes()
+        public IEnumerable<Scene> GetScenes()
         {
             throw new NotImplementedException();
         }

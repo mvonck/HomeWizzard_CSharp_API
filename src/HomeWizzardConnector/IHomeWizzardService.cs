@@ -23,7 +23,7 @@ namespace HomeWizzardConnector
         /// Get all scenes
         /// </summary>
         /// <returns></returns>
-        IEnumerable<object> GetScenes(); 
+        IEnumerable<Scene> GetScenes(); 
 
         /// <summary>
         /// Turns a switch on or off

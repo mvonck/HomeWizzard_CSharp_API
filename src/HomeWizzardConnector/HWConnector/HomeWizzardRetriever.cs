@@ -17,21 +17,11 @@ namespace HomeWizzardConnector.HWConnector
         {
         }
 
-        /// <summary>
-        /// Gets all main Cora Categories from Umbrella with children counted
-        /// </summary>
-        /// <returns>A json Object with Cora Categories</returns>
-        /// <exception cref="RetrieverException">When categories could not be retrieved</exception>
         public BaseResponse<IEnumerable<Switch>> GetSwitchNumbers()
         {
             return GetAndParseAction<BaseResponse<IEnumerable<Switch>>>(action: "/swlist");
         }
 
-        /// <summary>
-        /// Gets all main Cora Categories from Umbrella with children counted
-        /// </summary>
-        /// <returns>A json Object with Cora Categories</returns>
-        /// <exception cref="RetrieverException">When categories could not be retrieved</exception>
         public BaseResponse<GetSensorsResponse> GetSensors()
         {
             return GetAndParseAction<BaseResponse<GetSensorsResponse>>(action: "/get-sensors");

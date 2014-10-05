@@ -54,7 +54,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="HWConnector\Extensions\YesNoConverterTest.cs" />
+    <Compile Include="HWConnector\JsonResult\Extensions\SensorTypeConverterTest.cs" />
+    <Compile Include="HWConnector\JsonResult\Extensions\YesNoConverterTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

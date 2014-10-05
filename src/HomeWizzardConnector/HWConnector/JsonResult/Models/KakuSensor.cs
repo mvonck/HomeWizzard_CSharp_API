@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using HomeWizzardConnector.HWConnector.JsonResult.Extensions;
+using HomeWizzardConnector.HWConnector.JsonResult.Models.Enums;
+using Newtonsoft.Json;
 
 namespace HomeWizzardConnector.HWConnector.JsonResult.Models
 {
@@ -8,7 +10,8 @@ namespace HomeWizzardConnector.HWConnector.JsonResult.Models
         public string Status { get; set; }
 
         [JsonProperty("type")]
-        public string Type { get; set; }
+        [JsonConverter(typeof(SensorTypeConverter))]
+        public SensorType Type { get; set; }
 
         [JsonProperty("timestamp")]
         public string TimeStamp { get; set; }

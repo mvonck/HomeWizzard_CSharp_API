@@ -1,4 +1,4 @@
-﻿using HomeWizzardConnector.HWConnector.Extensions;
+﻿using HomeWizzardConnector.HWConnector.JsonResult.Extensions;
 using Newtonsoft.Json;
 
 namespace HomeWizzardConnector.HWConnector.JsonResult.Models

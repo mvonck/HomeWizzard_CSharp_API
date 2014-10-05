@@ -1,9 +1,9 @@
 ﻿using System;
-using HomeWizzardConnector.HWConnector.Extensions;
+using HomeWizzardConnector.HWConnector.JsonResult.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 
-namespace HomeWizzardConnector.Test.HWConnector.Extensions
+namespace HomeWizzardConnector.Test.HWConnector.JsonResult.Extensions
 {
     [TestClass]
     public class YesNoConverterTest

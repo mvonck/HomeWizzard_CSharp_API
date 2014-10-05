@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using HomeWizzardConnector.Models.Enums;
+using Newtonsoft.Json;
 
 namespace HomeWizzardConnector.Models
 {
@@ -11,14 +12,14 @@ namespace HomeWizzardConnector.Models
             : base(jsonObject)
         {
             Status = jsonObject.Status;
-            Type = jsonObject.Type;
+            Type = jsonObject.Type.ToPublicEnum();
             TimeStamp = jsonObject.TimeStamp;
             CameraId = jsonObject.CameraId;
         }
         
         public string Status { get; set; }
 
-        public string Type { get; set; }
+        public SensorType Type { get; set; }
 
         public string TimeStamp { get; set; }
 

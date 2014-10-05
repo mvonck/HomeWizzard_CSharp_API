@@ -34,7 +34,7 @@ namespace HomeWizzardConnector.ApiConnector
         protected TJsonResult GetAndParseAction<TJsonResult>(string action)
         {
             //Try to get jsonResult
-            string response;
+            Stream response;
             try
             {
                 response = RetrieveResultWithRetry(action);
@@ -45,7 +45,12 @@ namespace HomeWizzardConnector.ApiConnector
             }
 
             //Try to parse result to json
-            return JsonConvert.DeserializeObject<TJsonResult>(response);
+            var serializer = new JsonSerializer();
+            using (var sr = new StreamReader(response))
+            using (var jsonTextReader = new JsonTextReader(sr))
+            {
+                return serializer.Deserialize<TJsonResult>(jsonTextReader);
+            }
         }
 
         /// <summary>
@@ -56,7 +61,7 @@ namespace HomeWizzardConnector.ApiConnector
         /// <param name="numRetries">The number to retry, if null the default will be used</param>
         /// <returns>The result of the given url as string</returns>
         /// <exception cref="ConnectorException">if getting data is failed after numRetries</exception>
-        private string RetrieveResultWithRetry(string apiActionUrl, int numRetries = 3)
+        private Stream RetrieveResultWithRetry(string apiActionUrl, int numRetries = 3)
         {
             if (!apiActionUrl.StartsWith("/"))
                 throw new ArgumentException("Action must start with '/', for example '/action'");
@@ -72,7 +77,7 @@ namespace HomeWizzardConnector.ApiConnector
                     try
                     {
                         connector.WebClient.Encoding = Encoding.UTF8;
-                        return connector.WebClient.DownloadString(address);
+                        return connector.WebClient.OpenRead(address);
                     }
                     catch (Exception e)
                     {

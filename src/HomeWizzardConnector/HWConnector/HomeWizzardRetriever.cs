@@ -33,6 +33,11 @@ namespace HomeWizzardConnector.HWConnector
             return GetAndParseAction<BaseResponse>(action: String.Format("/sw/{0}/{1}", switchId, status.ToString().ToLower()));
         }
 
+        public BaseResponse SetScene(int sceneId, SwitchStatus status)
+        {
+            return GetAndParseAction<BaseResponse>(action: String.Format("/gp/{0}/{1}", sceneId, status.ToString().ToLower()));
+        }
+
         public BaseResponse OperateDimmer(int switchId, short dimmerNumber)
         {
             if(dimmerNumber < 0 || dimmerNumber > 255)

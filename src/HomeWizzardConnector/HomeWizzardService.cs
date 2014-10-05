@@ -45,9 +45,9 @@ namespace HomeWizzardConnector
             _homeWizzardRetriever.SetSwitch(switchId, status.ToJsonStatus());
         }
 
-        public void SwitchScene(int sceneId, SwitchStatus switchStatus)
+        public void SetScene(int sceneId, SwitchStatus status)
         {
-            throw new NotImplementedException();
+            _homeWizzardRetriever.SetScene(sceneId, status.ToJsonStatus());
         }
 
         public void OperateDimmer(int dimmerId, short dimmerNumber)

@@ -36,8 +36,8 @@ namespace HomeWizzardConnector
         /// Turns a switch on or off
         /// </summary>
         /// <param name="sceneId"></param>
-        /// <param name="switchStatus"></param>
-        void SwitchScene(int sceneId, SwitchStatus switchStatus);
+        /// <param name="status"></param>
+        void SetScene(int sceneId, SwitchStatus status);
 
         /// <summary>
         /// Operate dimmer

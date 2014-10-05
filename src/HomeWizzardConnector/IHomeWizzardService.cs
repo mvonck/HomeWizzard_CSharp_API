@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using HomeWizzardConnector.Models;
 using HomeWizzardConnector.Models.Enums;
 
@@ -14,13 +11,13 @@ namespace HomeWizzardConnector
         /// Get all switchNumbers
         /// </summary>
         /// <returns></returns>
-        IEnumerable<SwitchNumber> GetSwitchNumbers();
+        IEnumerable<Switch> GetSwitchNumbers();
 
         /// <summary>
         /// Get all sensors
         /// </summary>
         /// <returns></returns>
-        IEnumerable<object> GetSensors();
+        SensorsCollection GetSensors();
 
         /// <summary>
         /// Get all scenes

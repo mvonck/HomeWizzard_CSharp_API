@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using HomeWizzardConnector.ApiConnector;
 using HomeWizzardConnector.ApiConnector.Exceptions;
+using HomeWizzardConnector.HWConnector.JsonResult;
+using HomeWizzardConnector.HWConnector.JsonResult.Models;
 using Newtonsoft.Json;
 
 namespace HomeWizzardConnector.HWConnector
@@ -20,9 +22,20 @@ namespace HomeWizzardConnector.HWConnector
         /// </summary>
         /// <returns>A json Object with Cora Categories</returns>
         /// <exception cref="RetrieverException">When categories could not be retrieved</exception>
-        public JsonResult.GetSwitchNumbers GetSwitchNumbers()
+        public BaseResponse<IEnumerable<Switch>> GetSwitchNumbers()
         {
-            return GetAndParseAction<JsonResult.GetSwitchNumbers>(action: "/swlist");
+            return GetAndParseAction<BaseResponse<IEnumerable<Switch>>>(action: "/swlist");
+        }
+
+        /// <summary>
+        /// Gets all main Cora Categories from Umbrella with children counted
+        /// </summary>
+        /// <returns>A json Object with Cora Categories</returns>
+        /// <exception cref="RetrieverException">When categories could not be retrieved</exception>
+        public BaseResponse<GetSensorsResponse> GetSensors()
+        {
+            return GetAndParseAction<BaseResponse<GetSensorsResponse>>(action: "/get-sensors");
         }
     }
 }
+

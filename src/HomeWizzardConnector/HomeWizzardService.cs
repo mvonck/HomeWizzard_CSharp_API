@@ -18,17 +18,18 @@ namespace HomeWizzardConnector
             _homeWizzardRetriever = new HomeWizzardRetriever(serverAddress, password);
         }
 
-        public IEnumerable<SwitchNumber> GetSwitchNumbers()
+        public IEnumerable<Switch> GetSwitchNumbers()
         {
             return _homeWizzardRetriever
                 .GetSwitchNumbers()
-                .SwitchNumbers
-                .Select(x => new SwitchNumber(x));
+                .Response
+                .Select(x => new Switch(x));
         }
 
-        public IEnumerable<object> GetSensors()
+        public SensorsCollection GetSensors()
         {
-            throw new NotImplementedException();
+            var jsonObject = _homeWizzardRetriever.GetSensors();
+            return new SensorsCollection(jsonObject.Response);
         }
 
         public IEnumerable<object> GetScenes()

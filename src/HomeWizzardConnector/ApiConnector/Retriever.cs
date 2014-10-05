@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using HomeWizzardConnector.ApiConnector.Exceptions;
+using HomeWizzardConnector.HWConnector.JsonResult;
 using Newtonsoft.Json;
 
 namespace HomeWizzardConnector.ApiConnector

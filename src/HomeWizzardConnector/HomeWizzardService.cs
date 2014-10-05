@@ -40,12 +40,12 @@ namespace HomeWizzardConnector
                 .Select(x => new Scene(x));
         }
 
-        public void SwitchDevice(int switchId, SwitchEnum switchEnum)
+        public void SetSwitch(int switchId, SwitchStatus status)
         {
-            throw new NotImplementedException();
+            _homeWizzardRetriever.SetSwitch(switchId, status.ToJsonStatus());
         }
 
-        public void SwitchScene(int sceneId, SwitchEnum switchEnum)
+        public void SwitchScene(int sceneId, SwitchStatus switchStatus)
         {
             throw new NotImplementedException();
         }

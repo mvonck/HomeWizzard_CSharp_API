@@ -9,6 +9,6 @@ namespace HomeWizzardConnector.HWConnector.JsonResult.Models
         public string Type { get; set; }
 
         [JsonProperty("status")]
-        public SwitchEnum Status { get; set; }
+        public SwitchStatus Status { get; set; }
     }
 }

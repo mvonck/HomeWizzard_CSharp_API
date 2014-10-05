@@ -58,6 +58,9 @@ namespace HomeWizzardConnector.ApiConnector
         /// <exception cref="ConnectorException">if getting data is failed after numRetries</exception>
         private string RetrieveResultWithRetry(string apiActionUrl, int numRetries = 3)
         {
+            if (!apiActionUrl.StartsWith("/"))
+                throw new ArgumentException("Action must start with '/', for example '/action'");
+
             using (var connector = GetConnector())
             {
                 //set rest api address

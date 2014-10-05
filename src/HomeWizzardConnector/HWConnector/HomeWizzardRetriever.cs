@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using HomeWizzardConnector.ApiConnector;
-using HomeWizzardConnector.ApiConnector.Exceptions;
 using HomeWizzardConnector.HWConnector.JsonResult;
 using HomeWizzardConnector.HWConnector.JsonResult.Models;
-using Newtonsoft.Json;
+using HomeWizzardConnector.HWConnector.JsonResult.Models.Enums;
 
 namespace HomeWizzardConnector.HWConnector
 {
@@ -30,6 +26,11 @@ namespace HomeWizzardConnector.HWConnector
         public BaseResponse<IEnumerable<Scene>> GetScenes()
         {
             return GetAndParseAction<BaseResponse<IEnumerable<Scene>>>(action: "/gplist");
+        }
+
+        public BaseResponse SetSwitch(int switchId, SwitchStatus status)
+        {
+            return GetAndParseAction<BaseResponse>(action: String.Format("/sw/{0}/{1}", switchId, status.ToString().ToLower()));
         }
     }
 }

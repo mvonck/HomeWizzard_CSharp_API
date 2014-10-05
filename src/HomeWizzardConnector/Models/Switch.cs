@@ -18,6 +18,6 @@ namespace HomeWizzardConnector.Models
 
         public string Type { get; set; }
 
-        public SwitchEnum Status { get; set; }
+        public SwitchStatus Status { get; set; }
     }
 }

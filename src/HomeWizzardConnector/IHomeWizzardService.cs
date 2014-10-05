@@ -29,15 +29,15 @@ namespace HomeWizzardConnector
         /// Turns a switch on or off
         /// </summary>
         /// <param name="switchId"></param>
-        /// <param name="switchEnum"></param>
-        void SwitchDevice(int switchId, SwitchEnum switchEnum);
+        /// <param name="status"></param>
+        void SetSwitch(int switchId, SwitchStatus status);
 
         /// <summary>
         /// Turns a switch on or off
         /// </summary>
         /// <param name="sceneId"></param>
-        /// <param name="switchEnum"></param>
-        void SwitchScene(int sceneId, SwitchEnum switchEnum);
+        /// <param name="switchStatus"></param>
+        void SwitchScene(int sceneId, SwitchStatus switchStatus);
 
         /// <summary>
         /// Operate dimmer

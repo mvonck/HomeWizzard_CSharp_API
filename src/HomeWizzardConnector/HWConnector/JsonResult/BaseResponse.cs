@@ -2,7 +2,7 @@
 
 namespace HomeWizzardConnector.HWConnector.JsonResult
 {
-    internal class BaseResponse<TResponse> where TResponse : class
+    internal class BaseResponse
     {
         [JsonProperty("status")]
         public string Status { get; set; }
@@ -12,7 +12,11 @@ namespace HomeWizzardConnector.HWConnector.JsonResult
 
         [JsonProperty("request")]
         public Request Request { get; set; }
+    }
 
+    internal class BaseResponse<TResponse> : BaseResponse
+        where TResponse : class
+    {
         [JsonProperty("response")]
         public TResponse Response { get; set; }
     }

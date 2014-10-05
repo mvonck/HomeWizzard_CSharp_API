@@ -15,8 +15,6 @@ namespace HomeWizzardConnector.ApiConnector
     internal class Retriever : IRetriever
     {
         protected Func<IConnector> GetConnector { get; set; }
-
-        protected const int DefaultNumRetries = 3;
         protected const int RetryTimeout = 1000;
 
         /// <summary>
@@ -39,15 +37,12 @@ namespace HomeWizzardConnector.ApiConnector
         /// <param name="numRetries">The number to retry, if null the default will be used</param>
         /// <returns>The result of the given url as string</returns>
         /// <exception cref="ConnectorException">if getting data is failed after numRetries</exception>
-        public string RetrieveResultWithRetry(string apiActionUrl, int? numRetries)
+        protected string RetrieveResultWithRetry(string apiActionUrl, int numRetries = 3)
         {
             using (var connector = GetConnector())
             {
                 //set rest api address
                 var address = new Uri(connector.BaseUrl + apiActionUrl);
-
-                //if numRetries is null, set default
-                numRetries = numRetries ?? DefaultNumRetries;
 
                 //try xx times
                 for (var retryNr = 0; retryNr < numRetries; retryNr++)

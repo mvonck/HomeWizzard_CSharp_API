@@ -2,6 +2,5 @@
 {
     internal interface IRetriever
     {
-        string RetrieveResultWithRetry(string apiActionUrl, int? numRetries);
     }
 }

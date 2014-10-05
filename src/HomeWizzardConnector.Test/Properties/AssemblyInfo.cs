@@ -5,15 +5,14 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("HomeWizzardConnector")]
+[assembly: AssemblyTitle("HomeWizzardConnector.Test")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("HomeWizzardConnector")]
+[assembly: AssemblyProduct("HomeWizzardConnector.Test")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-[assembly: InternalsVisibleTo("HomeWizzardConnector.Test")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
@@ -21,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("5659b46a-5cfa-4302-8c38-aacefdf7d8ac")]
+[assembly: Guid("f3e48c57-22c2-4ff5-bd4d-cdfb23a93eb0")]
 
 // Version information for an assembly consists of the following four values:
 //

@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,9 +47,22 @@
     <Compile Include="ApiConnector\IConnector.cs" />
     <Compile Include="ApiConnector\IRetriever.cs" />
     <Compile Include="ApiConnector\Retriever.cs" />
-    <Compile Include="Enums\SwitchEnum.cs" />
+    <Compile Include="HWConnector\JsonResult\Models\Enums\SwitchEnum.cs" />
+    <Compile Include="Models\Enums\SwitchEnum.cs" />
+    <Compile Include="HomeWizzardService.cs" />
+    <Compile Include="HWConnector\Extensions\YesNoConverter.cs" />
+    <Compile Include="HWConnector\HomeWizzardConnector.cs" />
+    <Compile Include="HWConnector\HomeWizzardRetriever.cs" />
+    <Compile Include="HWConnector\JsonResult\GetSwitchNumbers.cs" />
+    <Compile Include="HWConnector\JsonResult\Models\SwitchNumber.cs" />
+    <Compile Include="HWConnector\JsonResult\Response.cs" />
+    <Compile Include="HWConnector\JsonResult\Request.cs" />
     <Compile Include="IHomeWizzardService.cs" />
+    <Compile Include="Models\SwitchNumber.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

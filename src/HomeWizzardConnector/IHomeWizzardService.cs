@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HomeWizzardConnector.Models;
 using HomeWizzardConnector.Models.Enums;
 
 namespace HomeWizzardConnector
@@ -13,7 +14,7 @@ namespace HomeWizzardConnector
         /// Get all switchNumbers
         /// </summary>
         /// <returns></returns>
-        IEnumerable<object> GetSwitchNumbers();
+        IEnumerable<SwitchNumber> GetSwitchNumbers();
 
         /// <summary>
         /// Get all sensors

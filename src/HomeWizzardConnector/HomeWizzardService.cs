@@ -18,7 +18,7 @@ namespace HomeWizzardConnector
             _homeWizzardRetriever = new HomeWizzardRetriever(serverAddress, password);
         }
 
-        public IEnumerable<object> GetSwitchNumbers()
+        public IEnumerable<SwitchNumber> GetSwitchNumbers()
         {
             return _homeWizzardRetriever
                 .GetSwitchNumbers()

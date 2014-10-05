@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeWizzardConnector", "HomeWizzardConnector\HomeWizzardConnector.csproj", "{7DA6A8F5-D2CF-49AC-A4C3-69D88B5A8248}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeWizzardConnector.Test", "HomeWizzardConnector.Test\HomeWizzardConnector.Test.csproj", "{FE863165-FBD2-4CBD-A43B-314ED8C8DE4A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7DA6A8F5-D2CF-49AC-A4C3-69D88B5A8248}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DA6A8F5-D2CF-49AC-A4C3-69D88B5A8248}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DA6A8F5-D2CF-49AC-A4C3-69D88B5A8248}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DA6A8F5-D2CF-49AC-A4C3-69D88B5A8248}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE863165-FBD2-4CBD-A43B-314ED8C8DE4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE863165-FBD2-4CBD-A43B-314ED8C8DE4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE863165-FBD2-4CBD-A43B-314ED8C8DE4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE863165-FBD2-4CBD-A43B-314ED8C8DE4A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

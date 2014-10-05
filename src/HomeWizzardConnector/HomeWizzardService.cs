@@ -50,9 +50,12 @@ namespace HomeWizzardConnector
             throw new NotImplementedException();
         }
 
-        public void OperateDimmer(short value)
+        public void OperateDimmer(int dimmerId, short dimmerNumber)
         {
-            throw new NotImplementedException();
+            if (dimmerNumber < 0 || dimmerNumber > 255)
+                throw new ArgumentOutOfRangeException("dimmerNumber", "Only a value between 0 and 255 is allowd for the dimmer");
+
+            _homeWizzardRetriever.OperateDimmer(dimmerId, dimmerNumber);
         }
     }
 }

@@ -32,6 +32,14 @@ namespace HomeWizzardConnector.HWConnector
         {
             return GetAndParseAction<BaseResponse>(action: String.Format("/sw/{0}/{1}", switchId, status.ToString().ToLower()));
         }
+
+        public BaseResponse OperateDimmer(int switchId, short dimmerNumber)
+        {
+            if(dimmerNumber < 0 || dimmerNumber > 255)
+                throw new ArgumentOutOfRangeException("dimmerNumber", "Only a value between 0 and 255 is allowd for the dimmer");
+
+            return GetAndParseAction<BaseResponse>(action: String.Format("sw/dim/{0}/{1}", switchId, dimmerNumber));
+        }
     }
 }
 

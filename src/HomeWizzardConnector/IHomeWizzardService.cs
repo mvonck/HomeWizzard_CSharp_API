@@ -42,8 +42,9 @@ namespace HomeWizzardConnector
         /// <summary>
         /// Operate dimmer
         /// </summary>
-        /// <param name="value">value 0 ... 255</param>
+        /// <param name="dimmerId">The id of the dimmer to operate.</param>
+        /// <param name="dimmerNumber">value between 0 and 255</param>
         /// <exception cref="ArgumentOutOfRangeException">if value is not between 0 and 255</exception>
-        void OperateDimmer(Int16 value);
+        void OperateDimmer(int dimmerId, short dimmerNumber);
     }
 }

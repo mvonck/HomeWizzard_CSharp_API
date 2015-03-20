@@ -18,7 +18,7 @@ namespace HomeWizzardConnector
         /// Get all sensors
         /// </summary>
         /// <returns></returns>
-        Task<SensorsCollection> GetSensorsAsync();
+        Task<IEnumerable<Sensor>> GetSensorsAsync();
 
         /// <summary>
         /// Get all scenes

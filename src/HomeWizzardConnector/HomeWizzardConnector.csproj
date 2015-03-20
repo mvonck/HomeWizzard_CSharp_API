@@ -68,7 +68,6 @@
     <Compile Include="Models\KakuSensor.cs" />
     <Compile Include="Models\Scene.cs" />
     <Compile Include="Models\Sensor.cs" />
-    <Compile Include="Models\SensorsCollection.cs" />
     <Compile Include="Models\Switch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

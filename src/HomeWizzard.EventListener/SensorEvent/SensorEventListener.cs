@@ -22,28 +22,23 @@ namespace HomeWizzard.EventListener.SensorEvent
 
         public void Listen(CancellationToken clt, int interval)
         {
-            var currentSensors = _homeWizzardService.GetSensorsAsync().Result.Switches;
+            var currentSensors = _homeWizzardService.GetSensorsAsync().Result;
 
             while (!clt.IsCancellationRequested)
             {
                 Thread.Sleep(interval);
-                var newSensorsCollection = _homeWizzardService.GetSensorsAsync().Result;
-                var collection = newSensorsCollection.Switches
+                var newSensorsCollection = _homeWizzardService.GetSensorsAsync().Result.ToList();
+               newSensorsCollection
                 .Select(s => new
                 {
                     newSensor = s,
-                    oldSensor = currentSensors.FirstOrDefault(x => x.Id == s.Id)
+                    oldSensor = currentSensors.FirstOrDefault(x => x.Id == s.Id && x.GetType() == s.GetType())
                 })
                 .Where(s => s.oldSensor != null)
-                .Where(s => IsChanged(s.oldSensor, s.newSensor))
-                .ToList();
+                .ToList()
+                .ForEach(s => IsChanged(s.oldSensor, s.newSensor));
 
-                foreach (var col in collection)
-                {
-                    var old = col.oldSensor;
-                    var news = col.newSensor;
-                    _sensorChangedHandler.HandleEvent(old, news);
-                }
+               currentSensors = newSensorsCollection;
             }
         }
 
@@ -81,7 +76,7 @@ namespace HomeWizzard.EventListener.SensorEvent
             if (oldSensor.Status == newSensor.Status)
                 return false;
 
-            oldSensor.Status = newSensor.Status;
+            _sensorChangedHandler.HandleEvent(oldSensor, newSensor);
             return true;
         }
     }

@@ -27,16 +27,20 @@ namespace HomeWizzardConnector
                 .Select(x => new Switch(x));
         }
 
-        public async Task<SensorsCollection> GetSensorsAsync()
+        public async Task<IEnumerable<Sensor>> GetSensorsAsync()
         {
-            var jsonObject = await _homeWizzardRetriever.GetSensorsAsync().ConfigureAwait(false); ;
-            return new SensorsCollection(jsonObject.Response);
+            var jsonObject = await _homeWizzardRetriever.GetSensorsAsync().ConfigureAwait(false);
+
+            return new List<Sensor>()
+               .Union(jsonObject.Response.Switches.Select(x => new Switch(x)))
+               .Union(jsonObject.Response.KakuSensors.Select(x => new KakuSensor(x)))
+               .Union(jsonObject.Response.Scenes.Select(x => new Scene(x)));
         }
 
         public async Task<IEnumerable<Scene>> GetScenesAsync()
         {
             var result = await _homeWizzardRetriever.GetScenesAsync().ConfigureAwait(false); ;
-                
+
             return result
                 .Response
                 .Select(x => new Scene(x));

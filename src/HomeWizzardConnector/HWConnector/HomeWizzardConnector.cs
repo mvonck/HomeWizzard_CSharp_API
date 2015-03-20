@@ -10,6 +10,9 @@ namespace HomeWizzardConnector.HWConnector
 {
     internal class HomeWizzardConnector : IConnector
     {
+        private readonly Uri _baseUri;
+        private readonly WebClient _webClient;
+
         /// <summary>
         /// 
         /// </summary>
@@ -17,18 +20,17 @@ namespace HomeWizzardConnector.HWConnector
         /// <param name="password">The password of the HomeWizzard</param>
         public HomeWizzardConnector(string serverAddress, string password)
         {
-            if(string.IsNullOrEmpty(serverAddress))
+            if (string.IsNullOrEmpty(serverAddress))
                 throw new ArgumentNullException("serverAddress");
 
-            if(string.IsNullOrEmpty(password))
+            if (string.IsNullOrEmpty(password))
                 throw new ArgumentNullException("password");
 
-            if(serverAddress.Contains("http"))
+            if (serverAddress.Contains("http"))
                 throw new ArgumentException("don't set http in your server address", "serverAddress");
 
-            BaseUrl = String.Format("http://{0}/{1}", serverAddress, password);
-
-            WebClient = new WebClient();
+            _baseUri = new Uri(String.Format("http://{0}/{1}", serverAddress, password));
+            _webClient = new WebClient();
         }
 
         public void Dispose()
@@ -36,7 +38,20 @@ namespace HomeWizzardConnector.HWConnector
             WebClient.Dispose();
         }
 
-        public string BaseUrl { get; set; }
-        public WebClient WebClient { get; set; }
+        public Uri BaseUri
+        {
+            get
+            {
+                return _baseUri;
+            }
+        }
+
+        public WebClient WebClient
+        {
+            get
+            {
+                return _webClient;
+            }
+        }
     }
 }

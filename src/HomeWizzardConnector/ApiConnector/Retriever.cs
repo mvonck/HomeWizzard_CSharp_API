@@ -16,7 +16,7 @@ namespace HomeWizzardConnector.ApiConnector
     /// </summary>
     internal class Retriever : IRetriever
     {
-        protected Func<IConnector> GetConnector { get; set; }
+        protected readonly Func<IConnector> _getConnector;
         protected const int RetryTimeout = 1000;
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace HomeWizzardConnector.ApiConnector
             if (getGetConnector == null)
                 throw new ArgumentNullException("getGetConnector");
 
-            GetConnector = getGetConnector;
+            _getConnector = getGetConnector;
         }
 
         protected async Task<TJsonResult> GetAndParseActionAsync<TJsonResult>(string action)
@@ -64,12 +64,12 @@ namespace HomeWizzardConnector.ApiConnector
         private async Task<Stream> RetrieveResultWithRetryAsync(string apiActionUrl, int numRetries = 3)
         {
             if (!apiActionUrl.StartsWith("/"))
-                throw new ArgumentException("Action must start with '/', for example '/action'");
-
-            using (var connector = GetConnector())  
+                throw new ArgumentException("Action must start with '/', for example '/action'");  
+                    
+            using (var connector = _getConnector())  
             {
                 //set rest api address
-                var address = new Uri(connector.BaseUrl + apiActionUrl);
+                var address = new Uri(connector.BaseUri + apiActionUrl);                
 
                 //try xx times
                 for (var retryNr = 0; retryNr < numRetries; retryNr++)

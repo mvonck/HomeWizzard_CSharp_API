@@ -5,7 +5,7 @@ namespace HomeWizzardConnector.ApiConnector
 {
     internal interface IConnector : IDisposable
     {
-        string BaseUrl { get; set; }
-        WebClient WebClient { get; set; }
+        Uri BaseUri { get; }
+        WebClient WebClient { get; }
     }
 }

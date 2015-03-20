@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using HomeWizzardConnector.Models;
 using HomeWizzardConnector.Models.Enums;
+using System.Threading.Tasks;
 
 namespace HomeWizzardConnector
 {
@@ -11,33 +12,33 @@ namespace HomeWizzardConnector
         /// Get all switchNumbers
         /// </summary>
         /// <returns></returns>
-        IEnumerable<Switch> GetSwitchNumbers();
+        Task<IEnumerable<Switch>> GetSwitchNumbersAsync();
 
         /// <summary>
         /// Get all sensors
         /// </summary>
         /// <returns></returns>
-        SensorsCollection GetSensors();
+        Task<SensorsCollection> GetSensorsAsync();
 
         /// <summary>
         /// Get all scenes
         /// </summary>
         /// <returns></returns>
-        IEnumerable<Scene> GetScenes(); 
+        Task<IEnumerable<Scene>> GetScenesAsync(); 
 
         /// <summary>
         /// Turns a switch on or off
         /// </summary>
         /// <param name="switchId"></param>
         /// <param name="status"></param>
-        void SetSwitch(int switchId, SwitchStatus status);
+        Task SetSwitchAsync(int switchId, SwitchStatus status);
 
         /// <summary>
         /// Turns a switch on or off
-        /// </summary>
+        /// </summary>  
         /// <param name="sceneId"></param>
         /// <param name="status"></param>
-        void SetScene(int sceneId, SwitchStatus status);
+        Task SetSceneAsync(int sceneId, SwitchStatus status);
 
         /// <summary>
         /// Operate dimmer
@@ -45,6 +46,6 @@ namespace HomeWizzardConnector
         /// <param name="dimmerId">The id of the dimmer to operate.</param>
         /// <param name="dimmerNumber">value between 0 and 255</param>
         /// <exception cref="ArgumentOutOfRangeException">if value is not between 0 and 255</exception>
-        void OperateDimmer(int dimmerId, short dimmerNumber);
+        Task OperateDimmerAsync(int dimmerId, short dimmerNumber);
     }
 }

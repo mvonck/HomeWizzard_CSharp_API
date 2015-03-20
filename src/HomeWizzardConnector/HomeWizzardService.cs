@@ -18,44 +18,46 @@ namespace HomeWizzardConnector
             _homeWizzardRetriever = new HomeWizzardRetriever(serverAddress, password);
         }
 
-        public IEnumerable<Switch> GetSwitchNumbers()
+        public async Task<IEnumerable<Switch>> GetSwitchNumbersAsync()
         {
-            return _homeWizzardRetriever
-                .GetSwitchNumbers()
+            var result = await _homeWizzardRetriever.GetSwitchNumbersAsync().ConfigureAwait(false); ;
+
+            return result
                 .Response
                 .Select(x => new Switch(x));
         }
 
-        public SensorsCollection GetSensors()
+        public async Task<SensorsCollection> GetSensorsAsync()
         {
-            var jsonObject = _homeWizzardRetriever.GetSensors();
+            var jsonObject = await _homeWizzardRetriever.GetSensorsAsync().ConfigureAwait(false); ;
             return new SensorsCollection(jsonObject.Response);
         }
 
-        public IEnumerable<Scene> GetScenes()
+        public async Task<IEnumerable<Scene>> GetScenesAsync()
         {
-            return _homeWizzardRetriever
-                .GetScenes()
+            var result = await _homeWizzardRetriever.GetScenesAsync().ConfigureAwait(false); ;
+                
+            return result
                 .Response
                 .Select(x => new Scene(x));
         }
 
-        public void SetSwitch(int switchId, SwitchStatus status)
+        public async Task SetSwitchAsync(int switchId, SwitchStatus status)
         {
-            _homeWizzardRetriever.SetSwitch(switchId, status.ToJsonStatus());
+            await _homeWizzardRetriever.SetSwitchAsync(switchId, status.ToJsonStatus()).ConfigureAwait(false); ;
         }
 
-        public void SetScene(int sceneId, SwitchStatus status)
+        public async Task SetSceneAsync(int sceneId, SwitchStatus status)
         {
-            _homeWizzardRetriever.SetScene(sceneId, status.ToJsonStatus());
+            await _homeWizzardRetriever.SetSceneAsync(sceneId, status.ToJsonStatus()).ConfigureAwait(false); ;
         }
 
-        public void OperateDimmer(int dimmerId, short dimmerNumber)
+        public async Task OperateDimmerAsync(int dimmerId, short dimmerNumber)
         {
             if (dimmerNumber < 0 || dimmerNumber > 255)
                 throw new ArgumentOutOfRangeException("dimmerNumber", "Only a value between 0 and 255 is allowd for the dimmer");
 
-            _homeWizzardRetriever.OperateDimmer(dimmerId, dimmerNumber);
+            await _homeWizzardRetriever.OperateDimmerAsync(dimmerId, dimmerNumber).ConfigureAwait(false);
         }
     }
 }

@@ -4,6 +4,7 @@ using HomeWizzardConnector.ApiConnector;
 using HomeWizzardConnector.HWConnector.JsonResult;
 using HomeWizzardConnector.HWConnector.JsonResult.Models;
 using HomeWizzardConnector.HWConnector.JsonResult.Models.Enums;
+using System.Threading.Tasks;
 
 namespace HomeWizzardConnector.HWConnector
 {
@@ -13,37 +14,37 @@ namespace HomeWizzardConnector.HWConnector
         {
         }
 
-        public BaseResponse<IEnumerable<Switch>> GetSwitchNumbers()
+        public async Task<BaseResponse<IEnumerable<Switch>>> GetSwitchNumbersAsync()
         {
-            return GetAndParseAction<BaseResponse<IEnumerable<Switch>>>(action: "/swlist");
+            return await GetAndParseActionAsync<BaseResponse<IEnumerable<Switch>>>(action: "/swlist").ConfigureAwait(false); ;
         }
 
-        public BaseResponse<GetSensorsResponse> GetSensors()
+        public async Task<BaseResponse<GetSensorsResponse>> GetSensorsAsync()
         {
-            return GetAndParseAction<BaseResponse<GetSensorsResponse>>(action: "/get-sensors");
+            return await GetAndParseActionAsync<BaseResponse<GetSensorsResponse>>(action: "/get-sensors").ConfigureAwait(false); ;
         }
 
-        public BaseResponse<IEnumerable<Scene>> GetScenes()
+        public async Task<BaseResponse<IEnumerable<Scene>>> GetScenesAsync()
         {
-            return GetAndParseAction<BaseResponse<IEnumerable<Scene>>>(action: "/gplist");
+            return await GetAndParseActionAsync<BaseResponse<IEnumerable<Scene>>>(action: "/gplist").ConfigureAwait(false); ;
         }
 
-        public BaseResponse SetSwitch(int switchId, SwitchStatus status)
+        public async Task<BaseResponse> SetSwitchAsync(int switchId, SwitchStatus status)
         {
-            return GetAndParseAction<BaseResponse>(action: String.Format("/sw/{0}/{1}", switchId, status.ToString().ToLower()));
+            return await GetAndParseActionAsync<BaseResponse>(action: String.Format("/sw/{0}/{1}", switchId, status.ToString().ToLower())).ConfigureAwait(false); 
         }
 
-        public BaseResponse SetScene(int sceneId, SwitchStatus status)
+        public async Task<BaseResponse> SetSceneAsync(int sceneId, SwitchStatus status)
         {
-            return GetAndParseAction<BaseResponse>(action: String.Format("/gp/{0}/{1}", sceneId, status.ToString().ToLower()));
+            return await GetAndParseActionAsync<BaseResponse>(action: String.Format("/gp/{0}/{1}", sceneId, status.ToString().ToLower())).ConfigureAwait(false);
         }
 
-        public BaseResponse OperateDimmer(int switchId, short dimmerNumber)
+        public async Task<BaseResponse> OperateDimmerAsync(int switchId, short dimmerNumber)
         {
             if(dimmerNumber < 0 || dimmerNumber > 255)
                 throw new ArgumentOutOfRangeException("dimmerNumber", "Only a value between 0 and 255 is allowd for the dimmer");
 
-            return GetAndParseAction<BaseResponse>(action: String.Format("sw/dim/{0}/{1}", switchId, dimmerNumber));
+            return await GetAndParseActionAsync<BaseResponse>(action: String.Format("sw/dim/{0}/{1}", switchId, dimmerNumber)).ConfigureAwait(false);
         }
     }
 }

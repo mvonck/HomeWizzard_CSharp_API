@@ -31,13 +31,13 @@ namespace HomeWizzardConnector.ApiConnector
             GetConnector = getGetConnector;
         }
 
-        protected TJsonResult GetAndParseAction<TJsonResult>(string action)
+        protected async Task<TJsonResult> GetAndParseActionAsync<TJsonResult>(string action)
         {
             //Try to get jsonResult
             Stream response;
             try
             {
-                response = RetrieveResultWithRetry(action);
+                response = await RetrieveResultWithRetryAsync(action).ConfigureAwait(false);
             }
             catch (ConnectorException e)
             {
@@ -61,12 +61,12 @@ namespace HomeWizzardConnector.ApiConnector
         /// <param name="numRetries">The number to retry, if null the default will be used</param>
         /// <returns>The result of the given url as string</returns>
         /// <exception cref="ConnectorException">if getting data is failed after numRetries</exception>
-        private Stream RetrieveResultWithRetry(string apiActionUrl, int numRetries = 3)
+        private async Task<Stream> RetrieveResultWithRetryAsync(string apiActionUrl, int numRetries = 3)
         {
             if (!apiActionUrl.StartsWith("/"))
                 throw new ArgumentException("Action must start with '/', for example '/action'");
 
-            using (var connector = GetConnector())
+            using (var connector = GetConnector())  
             {
                 //set rest api address
                 var address = new Uri(connector.BaseUrl + apiActionUrl);
@@ -77,7 +77,7 @@ namespace HomeWizzardConnector.ApiConnector
                     try
                     {
                         connector.WebClient.Encoding = Encoding.UTF8;
-                        return connector.WebClient.OpenRead(address);
+                        return await connector.WebClient.OpenReadTaskAsync(address).ConfigureAwait(false);
                     }
                     catch (Exception e)
                     {
